@@ -23,7 +23,7 @@
   const $ = (s, root=document) => root.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const dateFmt = t => new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'short'}).format(new Date(t));
-  function loadData(){try{const saved=JSON.parse(localStorage.getItem(STORE));return saved&&Array.isArray(saved.worlds)&&Array.isArray(saved.records)?saved:structuredClone(starter)}catch{return structuredClone(starter)}}
+  function loadData(){const fresh=()=>JSON.parse(JSON.stringify(starter));try{const saved=JSON.parse(localStorage.getItem(STORE));return saved&&Array.isArray(saved.worlds)&&Array.isArray(saved.records)?saved:fresh()}catch{return fresh()}}
   function save(){localStorage.setItem(STORE,JSON.stringify(data));render()}
   const currentWorld = () => data.worlds.find(w=>w.id===activeWorldId) || data.worlds[0];
 
