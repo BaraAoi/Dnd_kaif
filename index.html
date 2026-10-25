@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#11120f" />
+  <meta name="description" content="Личный архив настольных ролевых игр: база знаний, персонажи, события и интерактивные карты миров." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2311120f'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='25' fill='%23d9b66f' font-family='serif'%3E%D0%A5%3C/text%3E%3C/svg%3E" />
+  <title>Хроники — архив миров</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <main id="gate" class="gate">
+    <div class="gate-art" aria-hidden="true"><div class="gate-orbit orbit-one"></div><div class="gate-orbit orbit-two"></div><div class="gate-sigil">✳</div><span class="gate-star star-a">✦</span><span class="gate-star star-b">✧</span><span class="gate-star star-c">·</span></div>
+    <section class="gate-card">
+      <div class="brand-mark">Х</div>
+      <p class="eyebrow">ЛИЧНЫЙ АРХИВ ПРИКЛЮЧЕНИЙ</p>
+      <h1>Хроники</h1>
+      <p class="gate-copy">Войди в архив, где каждая история<br>находит своё место.</p>
+      <form id="login-form">
+        <label for="password">Пароль архива</label>
+        <div class="password-wrap"><input id="password" type="password" placeholder="Введи пароль" autocomplete="current-password" required><button id="toggle-password" type="button" aria-label="Показать пароль">◉</button></div>
+        <p id="login-error" class="error hidden">Неверный пароль. Попробуй ещё раз.</p>
+        <button class="button primary login-button" type="submit">Открыть архив <span>↗</span></button>
+      </form>
+      <p class="gate-hint"><span class="tiny-lock">⌑</span> Доступ защищён паролем</p>
+    </section>
+    <div class="gate-footer">СОЗДАНО ДЛЯ ВАШИХ МИРОВ <span>✦</span></div>
+  </main>
+
+  <div id="app" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="Хроники"><span class="brand-mark small">Х</span><span>Хроники<small>АРХИВ МИРОВ</small></span></a>
+      <div class="side-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span> Обзор</button>
+        <button class="nav-item" data-view="knowledge"><span class="nav-icon">▤</span> База знаний <span class="nav-count" id="knowledge-count">0</span></button>
+        <button class="nav-item" data-view="maps"><span class="nav-icon">⌖</span> Карты миров <span class="nav-count" id="world-count">0</span></button>
+      </nav>
+      <div class="side-divider"></div>
+      <div class="side-label side-label-row">ТВОИ МИРЫ <button id="sidebar-add-world" class="icon-button plus-button" title="Добавить мир">＋</button></div>
+      <div id="world-nav" class="world-nav"></div>
+      <div class="sidebar-bottom"><div class="storage-card"><div class="storage-icon">✧</div><div><strong>Твои истории — здесь</strong><p>Записи сохраняются<br>на этом устройстве.</p></div></div><button id="lock-app" class="nav-item lock-link"><span class="nav-icon">⌑</span> Заблокировать архив</button></div>
+    </aside>
+    <section class="workspace">
+      <header class="topbar"><div class="breadcrumbs"><span>Архив</span><span class="crumb-separator">/</span><strong id="breadcrumb-current">Обзор</strong></div><div class="top-actions"><button id="quick-search" class="search-trigger"><span>⌕</span> Поиск по архиву <kbd>⌘ K</kbd></button><button id="quick-add" class="button primary top-add">＋ <span>Новая запись</span></button><div class="avatar">Х</div></div></header>
+      <div class="content" id="content"></div>
+    </section>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
