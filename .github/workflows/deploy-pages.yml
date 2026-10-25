@@ -2,7 +2,7 @@ name: Deploy static site to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, arena/204d2cd6-dnd-kaif]
   workflow_dispatch:
 
 permissions:
